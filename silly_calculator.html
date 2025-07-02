@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>حاسبة LED</title>
+  <link rel="stylesheet" href="silly-style.css">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+</head>
+<body class="light-theme">
+
+  <div class="calculator">
+    <div class="screen">
+      <div id="equation">0</div>
+      <div id="silly-response">النتيجة=</div>
+    </div>
+
+    <div class="buttons">
+      <!-- أول صف -->
+      <button onclick="add('7')">7</button>
+      <button onclick="add('8')">8</button>
+      <button onclick="add('9')">9</button>
+      <button onclick="add('/')">÷</button>
+
+      <!-- ثاني صف -->
+      <button onclick="add('4')">4</button>
+      <button onclick="add('5')">5</button>
+      <button onclick="add('6')">6</button>
+      <button onclick="add('*')">×</button>
+
+      <!-- ثالث صف -->
+      <button onclick="add('1')">1</button>
+      <button onclick="add('2')">2</button>
+      <button onclick="add('3')">3</button>
+      <button onclick="add('-')">−</button>
+
+      <!-- رابع صف -->
+      <button onclick="add('0')">0</button>
+      <button onclick="add('.')">.</button>
+      <button onclick="calculate()">=</button>
+      <button onclick="add('+')">+</button>
+
+      <!-- خامس صف -->
+      <button onclick="add('Math.sin(')">sin</button>
+      <button onclick="add('Math.cos(')">cos</button>
+      <button onclick="add('Math.tan(')">tan</button>
+      <button onclick="add('Math.sqrt(')">√</button>
+
+      <!-- سادس صف -->
+      <button onclick="clearDisplay()">C</button>
+      <button onclick="add('Math.pow(')">^</button>
+      <button onclick="add(')')">)</button>
+      <button onclick="toggleTheme()">🎨</button>
+    </div>
+  </div>
+
+  <script>
+    let expression = "";
+    const equationDisplay = document.getElementById("equation");
+    const sillyResponse = document.getElementById("silly-response");
+
+    function add(value) {
+      expression += value;
+      equationDisplay.textContent = expression;
+    }
+
+    function clearDisplay() {
+      expression = "";
+      equationDisplay.textContent = "0";
+      sillyResponse.textContent = "رجعتيها للزيرو بحالك 😒";
+    }
+
+    function calculate() {
+      const jokes = {
+        "2+2": "إيوا سير قولها لماما 😒",
+        "Math.sqrt(144)": "راك دكي بزاف وصافي 🤡",
+        "Math.sin(90)": "إيلا عارفها علاش كتسولني؟ 🙄"
+      };
+
+      if (jokes[expression]) {
+        sillyResponse.textContent = jokes[expression];
+        return;
+      }
+
+      try {
+        const result = eval(expression);
+        const replies = [
+          "نتيجة؟ راه ماشي مسابقة 🤨",
+          "ماشي داكشي اللي كنت باغي تعرف؟ 😂",
+          "واش نتيجتك ولا رقم حسابي؟",
+          "كنت عارف الجواب ولكن نسيت 🧠💨"
+        ];
+        sillyResponse.textContent =
+          Math.random() < 0.5 ? replies[Math.floor(Math.random() * replies.length)] : `النتيجة: ${result}`;
+      } catch {
+        sillyResponse.textContent = "خربقتينا خويا 😅";
+      }
+    }
+
+    function toggleTheme() {
+      document.body.classList.toggle("dark-theme");
+      document.body.classList.toggle("light-theme");
+    }
+    function playSound(id) {
+  const sound = document.getElementById(id);
+  if (sound) sound.play();
+}
+
+function add(value) {
+  expression += value;
+  equationDisplay.textContent = expression;
+  playSound('click-sound'); // كلما ضغط الزر
+}
+
+function clearDisplay() {
+  expression = "";
+  equationDisplay.textContent = "0";
+  sillyResponse.textContent = "رجعتيها للزيرو بحالك 😒";
+  playSound('fail-sound'); // صوت فشل
+}
+
+function calculate() {
+  const jokes = {
+    "2+2": "إيوا سير قولها لماما 😒",
+    "Math.sqrt(144)": "راك دكي بزاف وصافي 🤡",
+    "Math.sin(90)": "إيلا عارفها علاش كتسولني؟ 🙄"
+  };
+
+  if (jokes[expression]) {
+    sillyResponse.textContent = jokes[expression];
+    playSound('silly-sound'); // صوت تافه
+    return;
+  }
+
+  try {
+    const result = eval(expression);
+    const replies = [
+      "نتيجة؟ راه ماشي مسابقة 🤨",
+      "ماشي داكشي اللي كنت باغي تعرف؟ 😂",
+      "واش نتيجتك ولا رقم حسابي؟",
+      "كنت عارف الجواب ولكن نسيت 🧠💨"
+    ];
+    sillyResponse.textContent =
+      Math.random() < 0.5 ? replies[Math.floor(Math.random() * replies.length)] : `النتيجة: ${result}`;
+    playSound('silly-sound');
+  } catch {
+    sillyResponse.textContent = "خربقتينا خويا 😅";
+    playSound('fail-sound');
+  }
+}
+  </script>
+<audio id="click-sound" src="sfx/click.mp3"></audio>
+<audio id="fail-sound" src="sfx/fail.mp3"></audio>
+<audio id="silly-sound" src="sfx/silly.mp3"></audio>
+
+</body>
+</html>
