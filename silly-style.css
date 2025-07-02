@@ -1,0 +1,86 @@
+body {
+  font-family: 'Arial', sans-serif;
+  transition: 0.3s ease-in-out;
+}
+
+body.light-theme {
+  background: linear-gradient(to bottom, #ffc0cb, #ffffff);
+  color: #333;
+}
+
+body.dark-theme {
+  background: linear-gradient(to bottom, #2c003e, #000000);
+  color: #eee;
+}
+
+.calculator {
+  width: 340px;
+  margin: 50px auto;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 0 20px #ff99cc;
+  background: #fff;
+}
+
+body.dark-theme .calculator {
+  background: #1a1a1a;
+  box-shadow: 0 0 20px #aa00ff;
+}
+
+.screen {
+  background: #d0f0ff;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  font-size: 20px;
+  text-align: left;
+  min-height: 60px;
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
+}
+
+body.dark-theme .screen {
+  background: #1e0033;
+}
+
+#equation {
+  font-weight: bold;
+}
+
+#silly-response {
+  font-style: italic;
+  color: #777;
+  font-size: 14px;
+}
+
+body.dark-theme #silly-response {
+  color: #aaa;
+}
+
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+button {
+  padding: 15px;
+  border: none;
+  border-radius: 10px;
+  font-size: 18px;
+  cursor: pointer;
+  background-color: #ffe6f0;
+  color: #333;
+  box-shadow: 0 0 5px #ff4da6;
+  transition: all 0.2s ease;
+}
+
+body.dark-theme button {
+  background-color: #330033;
+  color: #eee;
+  box-shadow: 0 0 5px #cc00ff;
+}
+
+button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px #ff4da6;
+}
